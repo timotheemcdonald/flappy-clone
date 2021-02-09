@@ -6,7 +6,8 @@ class Obstacle{
         this.bottom = (Math.random() * canvas.height/3) + 20;
         this.x = canvas.width;
         this.width = 20;
-        this.color = 'hsl(' + hue + '100%, 50%';
+        this.color = 'hsl(' + hue + ',100%, 50%, 1)';
+        this.counted = false;
     }
     draw(){
         ctx.fillStyle = this.color;
@@ -15,12 +16,16 @@ class Obstacle{
     }
     update(){
         this.x -= gamespeed;
+        if(!this.counted && this.x < bird.x){
+            score++;
+            this.counted = true;
+        }
         this.draw();
     }
 }
 
 function handleObstacles(){
-    if(frame%50 === 0){
+    if(frame%100 === 0){
         obstaclesArray.unshift(new Obstacle);
     }
     for( let i = 0; i < obstaclesArray.length; i++){
