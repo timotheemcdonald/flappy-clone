@@ -14,7 +14,9 @@ let temp = canvas.height - 90;
 
 function animate(){
     ctx.clearRect(0, 0, canvas.width, canvas.height);
-    ctx.fillRect(10, temp, 50, 50);
+    // ctx.fillRect(10, temp, 50, 50);
+    bird.update();
+    bird.draw();
     requestAnimationFrame(animate);
 };
 animate();
